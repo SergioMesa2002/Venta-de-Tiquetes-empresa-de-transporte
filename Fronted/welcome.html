@@ -1,24 +1,24 @@
+<!-- welcome.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<h1 id="welcomeMessage"></h1>
-<script>
-    // Obtén el rol del usuario desde localStorage
-    const role = localStorage.getItem('role');
-    const welcomeMessage = document.getElementById('welcomeMessage');
+<h1>Bienvenido</h1>
+<div id="message"></div>
 
-    if (role === 'admin') {
-        welcomeMessage.textContent = 'Bienvenido administrador';
-    } else if (role === 'client') {
-        welcomeMessage.textContent = 'Bienvenido cliente';
-    } else {
-        welcomeMessage.textContent = 'Rol desconocido. Por favor inicia sesión nuevamente.';
-    }
-</script>
+<h2>Opciones de Administración</h2>
+<button id="createBusBtn">Crear Bus</button>
+<button id="createDriverBtn">Crear Conductor</button>
+<button id="createTripBtn">Crear Viaje</button>
+<button id="viewTripsBtn">Ver Historial de Viajes</button>
+
+<div id="adminOptions"></div>
+
+<script src="js/admin.js"></script>
 </body>
 </html>

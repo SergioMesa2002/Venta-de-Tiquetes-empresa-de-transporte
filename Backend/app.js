@@ -3,6 +3,7 @@ const cors = require('cors'); // Importa el paquete cors
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth'); // Asegúrate de que la ruta sea correcta
 
+
 const app = express();
 
 // Middlewares

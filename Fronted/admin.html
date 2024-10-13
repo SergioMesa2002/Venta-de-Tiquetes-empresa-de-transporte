@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Enlaza el archivo CSS -->
+</head>
+<body>
+<h1>Panel de Administración</h1> <!-- Título principal -->
+
+<div id="message"></div> <!-- Área para mostrar mensajes al usuario -->
+
+<h2>Crear Bus</h2> <!-- Título para la sección de creación de buses -->
+<form id="createBusForm"> <!-- Formulario para crear un bus -->
+    <input type="text" id="busPlate" placeholder="Placa" required>
+    <input type="text" id="driverName" placeholder="Nombre del Conductor" required>
+    <input type="text" id="departureCity" placeholder="Municipio de Salida" required>
+    <input type="text" id="arrivalCity" placeholder="Municipio de Llegada" required>
+    <button type="submit">Crear Bus</button>
+</form>
+
+<h2>Crear Conductor</h2> <!-- Título para la sección de creación de conductores -->
+<form id="createDriverForm"> <!-- Formulario para crear un conductor -->
+    <input type="text" id="driverCedula" placeholder="Cédula del Conductor" required>
+    <input type="text" id="driverName" placeholder="Nombre del Conductor" required>
+    <input type="text" id="driverLicense" placeholder="Licencia del Conductor" required>
+    <button type="submit">Crear Conductor</button>
+</form>
+
+<h2>Crear Viaje</h2> <!-- Título para la sección de creación de viajes -->
+<form id="createTripForm"> <!-- Formulario para crear un viaje -->
+    <input type="text" id="tripOrigin" placeholder="Origen" required>
+    <input type="text" id="tripDestination" placeholder="Destino" required>
+    <input type="datetime-local" id="tripDepartureTime" required>
+    <button type="submit">Crear Viaje</button>
+</form>
+
+<h2>Historial de Viajes</h2> <!-- Título para la sección de historial de viajes -->
+<button id="viewTripHistory">Ver Historial de Viajes</button> <!-- Botón para ver el historial -->
+
+<script src="js/admin.js"></script> <!-- Enlaza el archivo JavaScript -->
+</body>
+</html>
