@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+</head>
+<body>
+<h1 id="welcomeMessage"></h1>
+<script>
+    // Obtén el rol del usuario desde localStorage
+    const role = localStorage.getItem('role');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+
+    if (role === 'admin') {
+        welcomeMessage.textContent = 'Bienvenido administrador';
+    } else if (role === 'client') {
+        welcomeMessage.textContent = 'Bienvenido cliente';
+    } else {
+        welcomeMessage.textContent = 'Rol desconocido. Por favor inicia sesión nuevamente.';
+    }
+</script>
+</body>
+</html>
