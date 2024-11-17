@@ -1,13 +1,29 @@
-// models/Trip.js
 const mongoose = require('mongoose');
 
 const tripSchema = new mongoose.Schema({
-    bus: { type: mongoose.Schema.Types.ObjectId, ref: 'Bus', required: true },
-    driver: { type: mongoose.Schema.Types.ObjectId, ref: 'Driver', required: true },
-    departureCity: { type: String, required: true },
-    arrivalCity: { type: String, required: true },
-    date: { type: Date, required: true },
-    // Otros campos que necesites
+    origin: {
+        type: String,
+        required: true, // Este campo es requerido
+    },
+    destination: {
+        type: String,
+        required: true, // Este campo es requerido
+    },
+    departureTime: {
+        type: Date,
+        required: true, // Este campo es requerido
+    },
+    bus: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Bus', // Referencia al modelo de Bus
+        required: true, // Este campo es requerido
+    },
+    driver: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Driver', // Referencia al modelo de Driver
+        required: true, // Este campo es requerido
+    },
 });
 
+// Exporta el modelo de viaje
 module.exports = mongoose.model('Trip', tripSchema);

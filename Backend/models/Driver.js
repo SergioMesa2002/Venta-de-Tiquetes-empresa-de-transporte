@@ -1,10 +1,9 @@
-// models/Driver.js
 const mongoose = require('mongoose');
 
-const driverSchema = new mongoose.Schema({
+const DriverSchema = new mongoose.Schema({
+    cedula: { type: String, required: true, unique: true },
     name: { type: String, required: true },
-    licenseNumber: { type: String, required: true },
-    // Otros campos que necesites
+    license: { type: String, required: true },
 });
 
-module.exports = mongoose.model('Driver', driverSchema);
+module.exports = mongoose.model('Driver', DriverSchema);

@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
-    cedula: { type: String, required: true },
+const userSchema = new mongoose.Schema({
+    cedula: { type: String, required: true, unique: true },
     nombre: { type: String, required: true },
-    fecha_nacimiento: { type: Date, required: true }, // Asegúrate de que el nombre coincide
+    fecha_nacimiento: { type: Date, required: true },
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    role: { type: String, required: true } // Establece el rol del usuario
+    role: { type: String, enum: ['admin', 'client'], required: true }
 });
 
-const User = mongoose.model('User', UserSchema);
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);

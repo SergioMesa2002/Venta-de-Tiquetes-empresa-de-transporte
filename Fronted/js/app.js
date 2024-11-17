@@ -24,8 +24,8 @@ if (loginForm) {
             if (res.status === 200) {
                 // Guardar el rol en localStorage
                 localStorage.setItem('role', data.user.role);
-                // Redirigir a la página de bienvenida
-                window.location.href = 'welcome.html';
+                // Redirigir a la página de administración
+                window.location.href = 'admin.html';
             } else {
                 document.getElementById('message').textContent = data.message;
             }
@@ -101,6 +101,107 @@ if (registerClientForm) {
             }
         } catch (error) {
             console.error(error); // Imprime el error en la consola
+            document.getElementById('message').textContent = 'Error en la conexión';
+        }
+    });
+}
+
+// Lógica para el menú del administrador
+const API_URL_ADMIN = 'http://localhost:5000/api/auth'; // Asegúrate de que esta URL sea la correcta
+
+// Mostrar/ocultar formularios
+document.getElementById('addBusButton')?.addEventListener('click', () => {
+    document.getElementById('createBusForm').style.display = 'block';
+    document.getElementById('createDriverForm').style.display = 'none'; // Ocultar otros formularios
+    document.getElementById('createTripForm').style.display = 'none'; // Ocultar otros formularios
+});
+
+// Lógica para crear Bus
+const createBusForm = document.getElementById('createBusForm');
+if (createBusForm) {
+    document.getElementById('saveBusButton').addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        const busPlate = document.getElementById('busPlate').value;
+        const driverName = document.getElementById('driverName').value;
+        const departureCity = document.getElementById('departureCity').value;
+        const arrivalCity = document.getElementById('arrivalCity').value;
+
+        try {
+            const res = await fetch(`${API_URL_ADMIN}/create-bus`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ busPlate, driverName, departureCity, arrivalCity })
+            });
+
+            const data = await res.json();
+            document.getElementById('message').textContent = data.message;
+            if (res.status === 201) {
+                createBusForm.reset(); // Limpiar el formulario después de guardar
+            }
+        } catch (error) {
+            document.getElementById('message').textContent = 'Error en la conexión';
+        }
+    });
+}
+
+// Lógica para crear Conductor
+const createDriverForm = document.getElementById('createDriverForm');
+if (createDriverForm) {
+    document.getElementById('saveDriverButton').addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        const driverCedula = document.getElementById('driverCedula').value;
+        const driverName = document.getElementById('driverName').value;
+        const driverLicense = document.getElementById('driverLicense').value;
+
+        try {
+            const res = await fetch(`${API_URL_ADMIN}/create-driver`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ driverCedula, driverName, driverLicense })
+            });
+
+            const data = await res.json();
+            document.getElementById('message').textContent = data.message;
+            if (res.status === 201) {
+                createDriverForm.reset(); // Limpiar el formulario después de guardar
+            }
+        } catch (error) {
+            document.getElementById('message').textContent = 'Error en la conexión';
+        }
+    });
+}
+
+// Lógica para crear Viaje
+const createTripForm = document.getElementById('createTripForm');
+if (createTripForm) {
+    document.getElementById('saveTripButton').addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        const tripOrigin = document.getElementById('tripOrigin').value;
+        const tripDestination = document.getElementById('tripDestination').value;
+        const tripDepartureTime = document.getElementById('tripDepartureTime').value;
+
+        try {
+            const res = await fetch(`${API_URL_ADMIN}/create-trip`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ tripOrigin, tripDestination, tripDepartureTime })
+            });
+
+            const data = await res.json();
+            document.getElementById('message').textContent = data.message;
+            if (res.status === 201) {
+                createTripForm.reset(); // Limpiar el formulario después de guardar
+            }
+        } catch (error) {
             document.getElementById('message').textContent = 'Error en la conexión';
         }
     });
