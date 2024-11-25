@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Viajes</title>
+    <style>
+        /* Estilos generales */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Encabezado */
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        header nav a:hover {
+            color: #ffcc00;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .hero img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        .hero .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero .content h1 {
+            font-size: 50px;
+            margin: 0;
+        }
+
+        .hero .content button {
+            background: #ffcc00;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .hero .content button:hover {
+            background: #ffaa00;
+        }
+
+        /* Sección de viajes */
+        .viajes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .viaje-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .viaje-card:hover {
+            transform: scale(1.05);
+        }
+
+        .viaje-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .viaje-card .info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .viaje-card .info h3 {
+            margin: 10px 0;
+        }
+
+        .viaje-card .info p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .viaje-card .info button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .viaje-card .info button:hover {
+            background: #4455aa;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Encabezado -->
+<header>
+    <h1>Sistema de Viajes</h1>
+    <nav>
+        <a href="#datos">Datos Personales</a>
+        <a href="#consultar">Consultar Viajes</a>
+        <a href="#comprar">Comprar Tiquetes</a>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <img src="path-to-your-image.png" alt="Imagen de Viajes">
+    <div class="content">
+        <h1>Explora Nuestros Viajes</h1>
+        <button onclick="scrollToTrips()">Viajes Disponibles</button>
+    </div>
+</section>
+
+<!-- Sección de viajes -->
+<section id="consultar" class="viajes">
+    <!-- Tarjeta de ejemplo -->
+    <div class="viaje-card">
+        <img src="path-to-another-image.png" alt="Imagen del viaje">
+        <div class="info">
+            <h3>Bogotá - Medellín</h3>
+            <p>Fecha: 2024-11-25</p>
+            <p>Hora: 10:00 AM</p>
+            <p>Precio: $50,000</p>
+            <button>Seleccionar</button>
+        </div>
+    </div>
+    <!-- Repetir tarjetas para otros viajes -->
+</section>
+
+<script>
+    // Función para desplazarse a la sección de viajes
+    function scrollToTrips() {
+        document.getElementById('consultar').scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
