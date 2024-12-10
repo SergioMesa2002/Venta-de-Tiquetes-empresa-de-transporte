@@ -67,6 +67,25 @@ router.post('/trips', async (req, res) => {
             return res.status(400).json({ message: 'El conductor con ese ID no existe' });
         }
 
+        // Ruta para obtener todos los viajes
+
+        // Endpoint para obtener todos los viajes
+        router.get('/trips', async (req, res) => {
+            try {
+                const trips = await Trip.find()
+                    .populate('bus', 'placa') // Poblar el campo 'bus' con la placa
+                    .populate('driver', 'name license'); // Poblar el campo 'driver' con nombre y licencia
+
+                res.status(200).json(trips);
+            } catch (error) {
+                console.error('Error al obtener los viajes:', error);
+                res.status(500).json({ message: 'Error al obtener los viajes', error });
+            }
+        });
+
+        module.exports = router;
+
+
         // Crea el viaje
         const newTrip = new Trip({
             origin,

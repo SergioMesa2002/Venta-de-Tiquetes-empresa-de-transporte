@@ -3,176 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Viajes</title>
+    <title>Reserva de Viajes Sogamoso</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* Estilos generales */
-        body, html {
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #3498DB;
+            --accent-color: #2ECC71;
+            --background-color: #ECF0F1;
+            --text-color: #2C3E50;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            box-sizing: border-box;
         }
 
-        /* Encabezado */
-        header {
-            background: #333;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
-        header nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-
-        header nav a:hover {
-            color: #ffcc00;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            text-align: center;
-            color: white;
-        }
-
-        .hero img {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-        }
-
-        .hero .content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-        }
-
-        .hero .content h1 {
-            font-size: 50px;
-            margin: 0;
-        }
-
-        .hero .content button {
-            background: #ffcc00;
-            color: #333;
-            border: none;
-            padding: 10px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .hero .content button:hover {
-            background: #ffaa00;
-        }
-
-        /* Sección de viajes */
-        .viajes {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
         }
 
-        .viaje-card {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-        }
-
-        .viaje-card:hover {
-            transform: scale(1.05);
-        }
-
-        .viaje-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-
-        .viaje-card .info {
-            padding: 15px;
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
             text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .viaje-card .info h3 {
-            margin: 10px 0;
+        header h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        .viaje-card .info p {
-            margin: 5px 0;
-            color: #666;
+        header i {
+            font-size: 1.5em;
         }
 
-        .viaje-card .info button {
-            background: #667eea;
+        .search-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filters input, .filters button {
+            flex-grow: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .filters button {
+            background-color: var(--secondary-color);
             color: white;
             border: none;
-            padding: 10px 15px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
-        .viaje-card .info button:hover {
-            background: #4455aa;
+        .filters button:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .trip-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .trip {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .trip:hover {
+            transform: scale(1.02);
+        }
+
+        .trip-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .trip-info p {
+            color: #7f8c8d;
+        }
+
+        .trip-action button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .trip-action button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .bus {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .seats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .seat {
+            background-color: #2ECC71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .seat:hover {
+            transform: scale(1.1);
+            background-color: var(--secondary-color);
+        }
+
+        .seat.selected {
+            background-color: #E74C3C;
+        }
+
+        .price {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin: 20px 0;
+        }
+
+        .reserve-button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reserve-button:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 600px) {
+            .filters {
+                flex-direction: column;
+            }
+
+            .trip {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .trip-action {
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
 <body>
-
-<!-- Encabezado -->
 <header>
-    <h1>Sistema de Viajes</h1>
-    <nav>
-        <a href="#datos">Datos Personales</a>
-        <a href="#consultar">Consultar Viajes</a>
-        <a href="#comprar">Comprar Tiquetes</a>
-    </nav>
+    <div class="container">
+        <h1>
+            <i class="fas fa-bus"></i>
+            Reserva de Viajes Sogamoso
+        </h1>
+    </div>
 </header>
 
-<!-- Hero Section -->
-<section class="hero">
-    <img src="path-to-your-image.png" alt="Imagen de Viajes">
-    <div class="content">
-        <h1>Explora Nuestros Viajes</h1>
-        <button onclick="scrollToTrips()">Viajes Disponibles</button>
-    </div>
-</section>
-
-<!-- Sección de viajes -->
-<section id="consultar" class="viajes">
-    <!-- Tarjeta de ejemplo -->
-    <div class="viaje-card">
-        <img src="path-to-another-image.png" alt="Imagen del viaje">
-        <div class="info">
-            <h3>Bogotá - Medellín</h3>
-            <p>Fecha: 2024-11-25</p>
-            <p>Hora: 10:00 AM</p>
-            <p>Precio: $50,000</p>
-            <button>Seleccionar</button>
+<div class="container">
+    <section class="search-section">
+        <div class="filters">
+            <input type="text" id="destination-filter" placeholder="Ciudad de Destino">
+            <input type="date" id="date-filter">
+            <button onclick="filterTrips()">
+                <i class="fas fa-search"></i> Buscar
+            </button>
         </div>
-    </div>
-    <!-- Repetir tarjetas para otros viajes -->
-</section>
+
+        <div class="trip-list" id="trip-list">
+            <!-- Viajes generados dinámicamente -->
+        </div>
+    </section>
+
+    <section class="bus" id="bus-container" style="display: none;">
+        <div class="seats" id="seats-container">
+            <!-- Asientos generados -->
+        </div>
+        <div class="price">Precio total: <span id="total-price">$0</span></div>
+        <button class="reserve-button" onclick="generateInvoice()">
+            <i class="fas fa-ticket-alt"></i> Generar Factura
+        </button>
+    </section>
+</div>
 
 <script>
-    // Función para desplazarse a la sección de viajes
-    function scrollToTrips() {
-        document.getElementById('consultar').scrollIntoView({ behavior: 'smooth' });
-    }
-</script>
+    const destinations = {
+        "Duitama": 5000,
+        "Tunja": 9000,
+        "Villa de Leyva": 15000,
+        "Paipa": 6000,
+        "Sáchica": 15000,
+        "Nobsa": 5000,
+        "Tibasosa": 5000,
+        "Monguí": 8000,
+        "Chiquinquirá": 25000,
+        "Raquira": 18000
+    };
 
+    const trips = Object.keys(destinations).map((destination, index) => ({
+        id: index + 1,
+        origin: "Sogamoso",
+        destination: destination,
+        date: `2024-12-${10 + (index % 20)}`,
+        price: destinations[destination]
+    }));
+
+    let selectedSeats = [];
+    let currentTrip = null;
+
+    function loadTrips(tripsToDisplay = trips) {
+        const tripList = document.getElementById('trip-list');
+        tripList.innerHTML = '';
+        tripsToDisplay.forEach(trip => {
+            const tripDiv = document.createElement('div');
+            tripDiv.classList.add('trip');
+            tripDiv.innerHTML = `
+                <div class="trip-info">
+                    <h3>${trip.origin} ➡️ ${trip.destination}</h3>
+                    <p>Fecha: ${trip.date}</p>
+                    <p>Precio: $${trip.price.toLocaleString('es-CO')}</p>
+                </div>
+                <div class="trip-action">
+                    <button onclick="selectTrip(${trip.id})">Reservar</button>
+                </div>
+            `;
+            tripList.appendChild(tripDiv);
+        });
+    }
+
+    function filterTrips() {
+        const destination = document.getElementById('destination-filter').value.toLowerCase();
+        const date = document.getElementById('date-filter').value;
+
+        const filteredTrips = trips.filter(trip => {
+            return (!destination || trip.destination.toLowerCase().includes(destination)) &&
+                (!date || trip.date === date);
+        });
+
+        loadTrips(filteredTrips);
+    }
+
+    function selectTrip(id) {
+        currentTrip = trips.find(trip => trip.id === id);
+        selectedSeats = [];
+        document.getElementById('bus-container').style.display = 'block';
+        loadSeats();
+        updatePrice();
+    }
+
+    function loadSeats() {
+        const seatsContainer = document.getElementById('seats-container');
+        seatsContainer.innerHTML = '';
+        for (let i = 1; i <= 16; i++) {
+            const seat = document.createElement('div');
+            seat.classList.add('seat');
+            seat.textContent = i;
+            seat.addEventListener('click', () => toggleSeatSelection(seat));
+            seatsContainer.appendChild(seat);
+        }
+    }
+
+    function toggleSeatSelection(seat) {
+        const seatNumber = seat.textContent;
+        if (selectedSeats.includes(seatNumber)) {
+            selectedSeats = selectedSeats.filter(s => s !== seatNumber);
+            seat.classList.remove('selected');
+        } else {
+            selectedSeats.push(seatNumber);
+            seat.classList.add('selected');
+        }
+        updatePrice();
+    }
+
+    function updatePrice() {
+        const totalPrice = selectedSeats.length * currentTrip.price;
+        document.getElementById('total-price').textContent = `$${totalPrice.toLocaleString('es-CO')}`;
+    }
+
+    function generateInvoice() {
+        const invoiceContent = `
+            Reserva FastBus
+            --------------------
+            Viaje: ${currentTrip.origin} ➡️ ${currentTrip.destination}
+            Fecha: ${currentTrip.date}
+            Precio por asiento: $${currentTrip.price.toLocaleString('es-CO')}
+            Asientos reservados: ${selectedSeats.join(', ')}
+            Total a pagar: $${(selectedSeats.length * currentTrip.price).toLocaleString('es-CO')}
+        `;
+
+        const blob = new Blob([invoiceContent], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'Factura_FastBus.txt';
+        link.click();
+    }
+
+    loadTrips();
+</script>
 </body>
 </html>

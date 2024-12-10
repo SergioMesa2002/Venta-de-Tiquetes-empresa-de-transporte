@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar Viajes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .trip-list {
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        .trip {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        .trip h3, .trip p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .trip button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .trip button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Viajes con FastBus</h1>
+</header>
+<main class="content">
+    <!-- Lista de viajes -->
+    <div class="trip-list" id="trip-list">
+        <!-- Los viajes se generarán dinámicamente aquí -->
+    </div>
+</main>
+<script>
+    // Lista simulada de viajes
+    const trips = [
+        { id: 1, origin: "Sogamoso", destination: "Duitama", date: "2024-12-10", driver: "Sergio Gomez", bus: "XYZ789" },
+        { id: 2, origin: "Sogamoso", destination: "Tunja", date: "2024-12-11", driver: "Juan Pérez", bus: "ABC456" },
+        { id: 3, origin: "Sogamoso", destination: "Villa de Leyva", date: "2024-12-12", driver: "Cristiano", bus: "DEF123" }
+    ];
+
+    const tripList = document.getElementById('trip-list');
+
+    // Cargar viajes en la lista
+    trips.forEach(trip => {
+        const tripDiv = document.createElement('div');
+        tripDiv.classList.add('trip');
+        tripDiv.innerHTML = `
+            <div>
+                <h3>${trip.origin} ➡️ ${trip.destination}</h3>
+                <p>Fecha: ${trip.date}</p>
+                <p>Conductor: ${trip.driver}</p>
+                <p>Bus: ${trip.bus}</p>
+            </div>
+            <button onclick="redirectToDetails(${trip.id})">Reservar</button>
+        `;
+        tripList.appendChild(tripDiv);
+    });
+
+    // Redirigir a la página de detalles
+    function redirectToDetails(tripId) {
+        window.location.href = `details.html?tripId=${tripId}`;
+    }
+</script>
+</body>
+</html>

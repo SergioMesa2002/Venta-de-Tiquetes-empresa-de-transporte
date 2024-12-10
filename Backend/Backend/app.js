@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
+
 const adminRoutes = require('./routes/admin');
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
@@ -29,6 +30,9 @@ app.use(express.json());
 // Configuración de rutas REST
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
+
+
+
 
 // Configuración de Mongoose
 mongoose.set('strictQuery', true);
@@ -180,6 +184,7 @@ apolloServer.start().then(() => {
     app.use('/graphql', bodyParser.json(), expressMiddleware(apolloServer));
     console.log('Apollo Server corriendo en http://localhost:5000/graphql');
 });
+
 
 // Configuración del puerto
 const PORT = process.env.PORT || 5000;
