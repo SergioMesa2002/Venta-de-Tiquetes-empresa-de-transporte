@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
-            });
+             });
 
             if (!res.ok) {
                 const errorData = await res.json();

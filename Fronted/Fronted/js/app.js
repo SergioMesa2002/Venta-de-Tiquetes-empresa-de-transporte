@@ -1,5 +1,5 @@
 // URL del backend
-const API_URL = 'http://localhost:5000/api/auth';
+const API_URL = 'https://api-con-apollo-server-1.onrender.com/api/auth';
 
 // Lógica para el inicio de sesión
 const loginForm = document.getElementById('loginForm');
@@ -106,9 +106,6 @@ if (registerClientForm) {
     });
 }
 
-const API_URL_ADMIN = 'https://api-con-apollo-server-1.onrender.com/api/auth';
-
-
 // Mostrar/ocultar formularios
 document.getElementById('addBusButton')?.addEventListener('click', () => {
     document.getElementById('createBusForm').style.display = 'block';
@@ -128,7 +125,7 @@ if (createBusForm) {
         const arrivalCity = document.getElementById('arrivalCity').value;
 
         try {
-            const res = await fetch(`${API_URL_ADMIN}/create-bus`, {
+            const res = await fetch(`${API_URL}/create-bus`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -158,7 +155,7 @@ if (createDriverForm) {
         const driverLicense = document.getElementById('driverLicense').value;
 
         try {
-            const res = await fetch(`${API_URL_ADMIN}/create-driver`, {
+            const res = await fetch(`${API_URL}/create-driver`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -188,7 +185,7 @@ if (createTripForm) {
         const tripDepartureTime = document.getElementById('tripDepartureTime').value;
 
         try {
-            const res = await fetch(`${API_URL_ADMIN}/create-trip`, {
+            const res = await fetch(`${API_URL}/create-trip`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
