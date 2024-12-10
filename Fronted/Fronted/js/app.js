@@ -106,8 +106,8 @@ if (registerClientForm) {
     });
 }
 
-// Lógica para el menú del administrador
-const API_URL_ADMIN = 'http://localhost:5000/api/auth'; // Asegúrate de que esta URL sea la correcta
+const API_URL_ADMIN = 'https://api-con-apollo-server-1.onrender.com/api/auth';
+
 
 // Mostrar/ocultar formularios
 document.getElementById('addBusButton')?.addEventListener('click', () => {

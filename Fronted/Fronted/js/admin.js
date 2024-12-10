@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    const API_URL = 'http://localhost:5000/api/auth'; // Asegúrate de que esta sea la URL correcta
+    const API_URL = 'https://api-con-apollo-server-1.onrender.com/api/auth';
+    // Asegúrate de que esta sea la URL correcta
 
     // Función para enviar datos al servidor
     async function sendData(endpoint, data) {
